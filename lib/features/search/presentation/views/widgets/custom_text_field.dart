@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../view_models/search_cubit/search_cubit.dart';
+// import '../../view_models/search_cubit/search_cubit.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({Key? key}) : super(key: key);
@@ -18,9 +18,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: searchController,
-      onChanged: (query) {
-        BlocProvider.of<SearchCubit>(context).fetchSearchBooks(query);
-      },
+      // onChanged: (query) {
+      //   BlocProvider.of<SearchCubit>(context).fetchSearchBooks(query);
+      // },
       style: const TextStyle(letterSpacing: 1.8),
       decoration: InputDecoration(
         enabledBorder: buildOutlineInputBorder(),

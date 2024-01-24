@@ -3,7 +3,7 @@ import '../../../../const.dart';
 import '../../../../core/utils/functions/lanuchCustomUrl.dart';
 import '../../../../core/utils/styles.dart';
 import '../../../../core/utils/widgets/custom_cached_network_image.dart';
-import '../../data/models/book_model.dart';
+
 import 'book_rating.dart';
 import 'custom_button.dart';
 
@@ -11,13 +11,10 @@ class BookPreview extends StatelessWidget {
   const BookPreview({
     super.key,
     required this.width,
-    required this.index,
-    required this.bookModel,
   });
 
   final double width;
-  final int index;
-  final BookModel bookModel;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +31,7 @@ class BookPreview extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: CustomCachedNetworkImage(
-                      imageUrl: bookModel
-                              .items[index].volumeInfo.imageLinks.thumbnail ??
+                      imageUrl:
                           '',
                       errorImageAspectRatio: 2.5 / 4),
                 )),
@@ -43,7 +39,7 @@ class BookPreview extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         Text(
-          bookModel.items[index].volumeInfo.title ?? 'The Jungle Book ',
+           'The Jungle Book ',
           style: Styles.textStyle30.copyWith(fontFamily: kGtSectraFine),
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
@@ -53,13 +49,13 @@ class BookPreview extends StatelessWidget {
         Opacity(
           opacity: 0.8,
           child: Text(
-            '${bookModel.items[index].volumeInfo.authors.isNotEmpty ? bookModel.items[index].volumeInfo.authors[0] : 'Jk Rowing'} ',
+            ' Jk Rowing ',
             style: Styles.textStyle18,
           ),
         ),
         const SizedBox(height: 20),
-        BookRating(index: index, bookModel: bookModel),
-        if (bookModel.items[index].volumeInfo.previewLink != null)
+        BookRating(),
+
           const SizedBox(height: 40),
         Row(
           children: [
@@ -69,7 +65,7 @@ class BookPreview extends StatelessWidget {
               backgroundColor: Colors.white,
               textColor: Colors.black,
               text:
-                  '${bookModel.items[index].saleInfo!.listPrice!.amount ?? '19,99'} €',
+                   '19,99',
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16.0),
                 bottomLeft: Radius.circular(16.0),
@@ -77,10 +73,7 @@ class BookPreview extends StatelessWidget {
             ),
             CustomButton(
               onPressed: () {
-                return launchCustomUrl(
-                  context,
-                  bookModel.items[index].volumeInfo.previewLink!,
-                );
+                return null ;
               },
               backgroundColor: Colors.red,
               textColor: Colors.white,

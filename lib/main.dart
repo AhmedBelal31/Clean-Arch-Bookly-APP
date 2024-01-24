@@ -6,13 +6,13 @@ import 'const.dart';
 import 'core/utils/app_router.dart';
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
-import 'features/home/data/repos/home_repo_impl.dart';
-import 'features/home/presentation/view_models/featured_books_cubit/featured_books_cubit.dart';
-import 'features/home/presentation/view_models/newest_books_cubit/newest_books_cubit.dart';
+// import 'features/home/data/repos/home_repo_impl.dart';
+// import 'features/home/presentation/view_models/featured_books_cubit/featured_books_cubit.dart';
+// import 'features/home/presentation/view_models/newest_books_cubit/newest_books_cubit.dart';
 
 void main() {
   // ApiService.init();
-  setupServiceLocator();
+  // setupServiceLocator();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
@@ -22,27 +22,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => FeaturedBookCubit(getIt.get<HomeRepoImpl>())
-            ..fetchFeaturedBooks(),
-        ),
-        BlocProvider(
-          create: (context) => NewestBookCubit(
-            getIt.get<HomeRepoImpl>(),
-          )..fetchNewestBooks(),
-        ),
-      ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: kPrimaryColor,
-            textTheme: GoogleFonts.montserratTextTheme(
-              ThemeData.dark().textTheme,
-            )),
-        routerConfig: AppRouter.router,
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kPrimaryColor,
+          textTheme: GoogleFonts.montserratTextTheme(
+            ThemeData.dark().textTheme,
+          )),
+      routerConfig: AppRouter.router,
     );
   }
 }

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/utils/widgets/custom_cached_network_image.dart';
-import '../../data/models/book_model.dart';
+
 import '../views/book_details_view.dart';
 
 class FeaturedBooksListViewItem extends StatelessWidget {
-  final BookModel bookModel;
+
   final int index;
 
   //final String imageUrl;
 
   const FeaturedBooksListViewItem(
-      {Key? key, required this.bookModel, required this.index})
+      {Key? key, required this.index})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class FeaturedBooksListViewItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) =>
-              BookDetailsView(bookModel: bookModel, index: index),
+              BookDetailsView( index: index),
         ));
         //GoRouter.of(context).push(AppRouter.kBookDetailsView);
       },
@@ -32,9 +32,7 @@ class FeaturedBooksListViewItem extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 2.7 / 4,
             child: CustomCachedNetworkImage(
-                imageUrl:
-                    bookModel.items[index].volumeInfo.imageLinks.thumbnail ??
-                        '',
+                imageUrl: '',
                 errorImageAspectRatio: 2.7 / 4),
           ),
         ),

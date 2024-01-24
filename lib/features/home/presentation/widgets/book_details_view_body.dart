@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import '../../../../core/utils/styles.dart';
-import '../../data/models/book_model.dart';
+
 import 'book_preview.dart';
 import 'similar_books_list_view.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  final BookModel bookModel;
 
-  final int index;
+
 
   const BookDetailsViewBody({
     Key? key,
-    required this.bookModel,
-    required this.index,
   }) : super(key: key);
 
   @override
@@ -43,16 +40,14 @@ class BookDetailsViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            BookPreview(width: width, bookModel: bookModel, index: index),
+            BookPreview(width: width,),
             const SizedBox(height: 60),
             const Text(
               'You Can Also Like ',
               style: Styles.textStyle18,
             ),
             const SizedBox(height: 20),
-            SimilarBooksListView(
-              bookModel: bookModel,
-            ),
+            SimilarBooksListView(),
             const SizedBox(height: 20),
           ],
         ),
