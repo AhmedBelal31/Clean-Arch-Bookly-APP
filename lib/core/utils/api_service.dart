@@ -25,8 +25,8 @@ class ApiService {
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    var result = await _dio.get('$_baseUrl$endPoint', queryParameters: query);
+    var response = await _dio.get('$_baseUrl$endPoint', queryParameters: query);
 
-    return result.data;
+    return response.data;
   }
 }
