@@ -1,15 +1,17 @@
 class BookEntity {
+  String bookId;
   String imageUrl;
 
   String title;
 
   String authorName;
 
-  String price;
+  num price;
 
-  String rating;
+  num rating;
 
   BookEntity({
+    required this.bookId,
     required this.imageUrl,
     required this.title,
     required this.authorName,
