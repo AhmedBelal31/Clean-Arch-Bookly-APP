@@ -2,21 +2,21 @@ import '../../domain/entities/book_entity.dart';
 
 abstract class HomeLocalDataSource
 {
-  Future<List<BookEntity>> fetchFeaturedBooks();
+  List<BookEntity> fetchFeaturedBooks();
 
-  Future<List<BookEntity>> fetchNewestBooks();
+  List<BookEntity>  fetchNewestBooks();
 }
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource
 {
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
+  List<BookEntity>  fetchFeaturedBooks() {
+
     throw UnimplementedError();
   }
 
   @override
-  Future<List<BookEntity>> fetchNewestBooks() {
+  List<BookEntity>  fetchNewestBooks() {
     // TODO: implement fetchNewestBooks
     throw UnimplementedError();
   }
