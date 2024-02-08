@@ -1,22 +1,23 @@
+import '../../../../const.dart';
 import '../../domain/entities/book_entity.dart';
+import 'package:hive_flutter/hive_flutter.dart' ;
 
-abstract class HomeLocalDataSource
-{
+abstract class HomeLocalDataSource {
   List<BookEntity> fetchFeaturedBooks();
 
-  List<BookEntity>  fetchNewestBooks();
+  List<BookEntity> fetchNewestBooks();
 }
 
-class HomeLocalDataSourceImpl extends HomeLocalDataSource
-{
+class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   @override
-  List<BookEntity>  fetchFeaturedBooks() {
+  List<BookEntity> fetchFeaturedBooks() {
+    var box = Hive.box<BookEntity>(kFeaturedBox);
 
-    throw UnimplementedError();
+    return box.values.toList();
   }
 
   @override
-  List<BookEntity>  fetchNewestBooks() {
+  List<BookEntity> fetchNewestBooks() {
     // TODO: implement fetchNewestBooks
     throw UnimplementedError();
   }
