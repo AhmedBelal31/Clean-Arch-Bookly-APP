@@ -12,8 +12,7 @@ class FeaturedBooksListViewItem extends StatelessWidget {
   //final String imageUrl;
 
   const FeaturedBooksListViewItem(
-      {Key? key, required this.index})
-      : super(key: key);
+      {super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class FeaturedBooksListViewItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
-          child: AspectRatio(
+          child: const AspectRatio(
             aspectRatio: 2.7 / 4,
             child: CustomCachedNetworkImage(
                 imageUrl: '',
