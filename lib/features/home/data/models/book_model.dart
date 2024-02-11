@@ -1,57 +1,107 @@
 import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 
-class BookModel extends BookEntity {
+// class BookModel extends BookEntity {
+//   int? totalItems;
+//   List<BookModelItems> items = [];
+//   String? kind;
+//
+//   BookModel({
+//     required this.totalItems,
+//     required this.items,
+//     required this.kind,
+//   }) : super(
+//           bookId: items.first.id!,
+//           imageUrl: items[0].volumeInfo.imageLinks.thumbnail!,
+//           title: items[0].volumeInfo.title!,
+//           authorName: items[0].volumeInfo.authors[0],
+//           price: items[0].saleInfo!.listPrice!.amount!,
+//           rating: items[0].volumeInfo.averageRating!,
+//         );
+//
+//   factory BookModel.fromJson(Map<String, dynamic> json) {
+//     return BookModel(
+//         kind : json['kind'],
+//         totalItems : json['totalItems'],
+//       items: (json['items'] as List<dynamic>)
+//           .map((item) => BookModelItems.fromJson(item))
+//           .toList(),
+//
+//     );
+//
+//
+//
+//
+//   }
+// }
+class AllBooksModel {
   int? totalItems;
-  List<BookModelItems> items = [];
+  List<BookModel> items = [];
   String? kind;
 
-  BookModel({
-    required this.totalItems,
-    required this.items,
-    required this.kind,
-  }) : super(
-          bookId: items.first.id!,
-          imageUrl: items[0].volumeInfo.imageLinks.thumbnail!,
-          title: items[0].volumeInfo.title!,
-          authorName: items[0].volumeInfo.authors[0],
-          price: items[0].saleInfo!.listPrice!.amount!,
-          rating: items[0].volumeInfo.averageRating!,
-        );
-
-  factory BookModel.fromJson(Map<String, dynamic> json) {
-    return BookModel(
-        kind : json['kind'],
-        totalItems : json['totalItems'],
-      items: (json['items'] as List<dynamic>)
-          .map((item) => BookModelItems.fromJson(item))
-          .toList(),
-    );
-
-
-
-
+  AllBooksModel.fromJson(Map<String, dynamic> json) {
+    kind = json['kind'];
+    totalItems = json['totalItems'];
+    json['items'].forEach((item) {
+      items.add(BookModel.fromJson(item));
+    });
   }
 }
 
-class BookModelItems {
+class BookModel extends BookEntity {
   String? id;
 
   String? etag;
-
   late BookModelVolumeInfo volumeInfo;
 
   BookModelAccessInfo? accessInfo;
 
   BookModelSaleInfo? saleInfo;
 
-  BookModelItems.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    etag = json['etag'];
-    volumeInfo = BookModelVolumeInfo.fromJson(json['volumeInfo']);
-    saleInfo = BookModelSaleInfo.fromJson(json['saleInfo']);
-    accessInfo = BookModelAccessInfo.fromJson(json['accessInfo']);
+  BookModel({
+    required this.id,
+    required this.accessInfo,
+    required this.etag,
+    required this.volumeInfo,
+    required this.saleInfo,
+  }) : super(
+          bookId: id!,
+          imageUrl: volumeInfo.imageLinks.thumbnail!,
+          title: volumeInfo.title!,
+          authorName: volumeInfo.authors[0],
+          rating: volumeInfo.averageRating!,
+          price: saleInfo!.listPrice!.amount!,
+        );
+
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    return BookModel(
+      id: json['id'] ?? '',
+      etag: json['etag'] ?? '',
+      volumeInfo: BookModelVolumeInfo.fromJson(json['volumeInfo']),
+      accessInfo: BookModelAccessInfo.fromJson(json['accessInfo']),
+      saleInfo: BookModelSaleInfo.fromJson(json['saleInfo']),
+    );
   }
 }
+
+// class BookModelItems {
+//   String? id;
+//
+//   String? etag;
+//
+//   late BookModelVolumeInfo volumeInfo;
+//
+//   BookModelAccessInfo? accessInfo;
+//
+//   BookModelSaleInfo? saleInfo;
+//
+//   BookModelItems.fromJson(Map<String, dynamic> json) {
+//     id = json['id'];
+//     etag = json['etag'];
+//     volumeInfo = BookModelVolumeInfo.fromJson(json['volumeInfo']);
+//     saleInfo = BookModelSaleInfo.fromJson(json['saleInfo']);
+//     accessInfo = BookModelAccessInfo.fromJson(json['accessInfo']);
+//   }
+// }
 
 class BookModelVolumeInfo {
   String? title;
