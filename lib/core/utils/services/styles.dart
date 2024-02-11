@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../../const.dart';
+import '../../../const.dart';
 
 abstract class Styles {
   static const textStyle30 = TextStyle(

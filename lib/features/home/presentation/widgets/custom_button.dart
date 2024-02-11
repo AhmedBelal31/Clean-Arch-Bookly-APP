@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/styles.dart';
+import '../../../../core/utils/services/styles.dart';
 
 class CustomButton extends StatelessWidget {
   final BorderRadius? borderRadius;

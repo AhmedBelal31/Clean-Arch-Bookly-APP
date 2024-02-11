@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../styles.dart';
+import '../services/styles.dart';
 
 class CustomErrorMessage extends StatelessWidget {
   const CustomErrorMessage({super.key, required this.errorMessage});

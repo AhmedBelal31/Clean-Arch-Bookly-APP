@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../const.dart';
-import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/utils/services/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import 'animated_image.dart';
 import 'animated_text.dart';

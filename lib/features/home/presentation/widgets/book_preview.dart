@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../const.dart';
 import '../../../../core/utils/functions/lanuchCustomUrl.dart';
-import '../../../../core/utils/styles.dart';
+import '../../../../core/utils/services/styles.dart';
 import '../../../../core/utils/widgets/custom_cached_network_image.dart';
 
 import 'book_rating.dart';

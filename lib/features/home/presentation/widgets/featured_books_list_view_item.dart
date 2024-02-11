@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/services/app_router.dart';
 import '../../../../core/utils/widgets/custom_cached_network_image.dart';
 
 import '../views/book_details_view.dart';

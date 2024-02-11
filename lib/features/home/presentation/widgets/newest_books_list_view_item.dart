@@ -22,7 +22,8 @@ class NewestBooksListViewItem extends StatelessWidget {
         //   }
         //
         // );
-        Navigator.of(context).push(MaterialPageRoute(
+        Navigator.of(context).push(
+            MaterialPageRoute(
           builder: (context) =>
               BookDetailsView(index: index),
         ));

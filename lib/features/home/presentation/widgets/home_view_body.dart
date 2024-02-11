@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/styles.dart';
+import '../../../../core/utils/services/styles.dart';
 import 'newest_books_list_view.dart';
 import 'custom_app_bar.dart';
 import 'featured_books_list_view.dart';

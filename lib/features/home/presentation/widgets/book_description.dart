@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../const.dart';
-import '../../../../core/utils/styles.dart';
+import '../../../../core/utils/services/styles.dart';
 
 import 'book_rating.dart';
 
