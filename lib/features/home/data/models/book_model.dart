@@ -64,16 +64,16 @@ class BookModel extends BookEntity {
     required this.volumeInfo,
     required this.saleInfo,
   }) : super(
-          bookId: id!,
-          imageUrl: volumeInfo.imageLinks.thumbnail ?? '',
-          title: volumeInfo.title ?? 'No Title',
-          authorName:
-              volumeInfo.authors.isNotEmpty ? volumeInfo.authors[0] : 'No Name',
-          rating: volumeInfo.averageRating ?? 4,
-          price: saleInfo!.listPrice?.amount ??  0,
-         previewLink:volumeInfo.previewLink ?? 'No LinK',
-         publishedDate: volumeInfo.publishedDate ?? '3/1/2001'
-        );
+            bookId: id!,
+            imageUrl: volumeInfo.imageLinks.thumbnail ?? '',
+            title: volumeInfo.title ?? 'No Title',
+            authorName: volumeInfo.authors.isNotEmpty
+                ? volumeInfo.authors[0]
+                : 'No Name',
+            rating: volumeInfo.averageRating ?? 4,
+            price: saleInfo!.listPrice?.amount ?? 0,
+            previewLink: volumeInfo.previewLink ?? 'No LinK',
+            publishedDate: volumeInfo.publishedDate ?? '3/1/2001');
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
@@ -123,7 +123,6 @@ class BookModelVolumeInfo {
         authors.add(author);
       });
     }
-
 
     if (json['categories'] != null) {
       json['categories'].forEach((category) {
@@ -197,5 +196,3 @@ class BookModelAccessInfoPdf {
     }
   }
 }
-
-

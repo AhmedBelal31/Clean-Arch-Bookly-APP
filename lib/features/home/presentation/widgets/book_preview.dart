@@ -34,14 +34,14 @@ final BookEntity book ;
                   borderRadius: BorderRadius.circular(15.0),
                   child: CustomCachedNetworkImage(
                       imageUrl:
-                          '',
+                         book.imageUrl,
                       errorImageAspectRatio: 2.5 / 4),
                 )),
           ),
         ),
         const SizedBox(height: 30),
         Text(
-           'The Jungle Book ',
+           '${book.title} ',
           style: Styles.textStyle30.copyWith(fontFamily: kGtSectraFine),
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
@@ -51,7 +51,7 @@ final BookEntity book ;
         Opacity(
           opacity: 0.8,
           child: Text(
-            ' Jk Rowing ',
+            '${book.authorName} ',
             style: Styles.textStyle18,
           ),
         ),
@@ -67,7 +67,7 @@ final BookEntity book ;
               backgroundColor: Colors.white,
               textColor: Colors.black,
               text:
-                   '19,99',
+              ' ${ book.price.toString()} \$ ',
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16.0),
                 bottomLeft: Radius.circular(16.0),

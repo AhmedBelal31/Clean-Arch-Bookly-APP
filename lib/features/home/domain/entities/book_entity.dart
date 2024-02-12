@@ -21,13 +21,14 @@ class BookEntity {
   @HiveField(7)
   String publishedDate;
 
-  BookEntity(
-      {required this.bookId,
-      required this.imageUrl,
-      required this.title,
-      required this.authorName,
-      required this.price,
-      required this.rating,
-      required this.previewLink,
-      required this.publishedDate});
+  BookEntity({
+    required this.bookId,
+    required this.imageUrl,
+    required this.title,
+    required this.authorName,
+    required this.price,
+    required this.rating,
+    required this.previewLink,
+    required this.publishedDate,
+  });
 }
