@@ -1,3 +1,4 @@
+import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/services/app_router.dart';
@@ -10,12 +11,13 @@ class FeaturedBooksListViewItem extends StatelessWidget {
   final int index;
 
   //final String imageUrl;
-
+final BookEntity book ;
   const FeaturedBooksListViewItem(
-      {super.key, required this.index});
+      {super.key, required this.index ,required this.book});
 
   @override
   Widget build(BuildContext context) {
+    print(book.imageUrl);
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -28,10 +30,10 @@ class FeaturedBooksListViewItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
-          child: const AspectRatio(
+          child:  AspectRatio(
             aspectRatio: 2.7 / 4,
             child: CustomCachedNetworkImage(
-                imageUrl: '',
+                imageUrl: book.imageUrl ,
                 errorImageAspectRatio: 2.7 / 4),
           ),
         ),

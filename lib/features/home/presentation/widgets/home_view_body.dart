@@ -30,7 +30,9 @@ class _HomeVewBodyState extends State<HomeVewBody> {
           BlocBuilder<FeaturedBooksCubit, FeaturedBooksStates>(
             builder: (context, state) {
               if (state is FeaturedBooksSuccessState) {
-                return const FeaturedBooksListView();
+                return FeaturedBooksListView(
+                  books: state.books,
+                );
               } else if (state is FeaturedBooksFailureState) {
                 return CustomErrorMessage(errorMessage: state.error);
               } else {
