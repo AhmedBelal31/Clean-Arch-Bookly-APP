@@ -67,7 +67,8 @@ class BookModel extends BookEntity {
           bookId: id!,
           imageUrl: volumeInfo.imageLinks.thumbnail ?? '',
           title: volumeInfo.title ?? '',
-          authorName: volumeInfo.authors[0] ,
+          authorName:
+              volumeInfo.authors.isNotEmpty ? volumeInfo.authors[0] : 'No Name',
           rating: volumeInfo.averageRating ?? 20,
           price: saleInfo!.listPrice?.amount ?? 20,
         );
@@ -82,26 +83,6 @@ class BookModel extends BookEntity {
     );
   }
 }
-
-// class BookModelItems {
-//   String? id;
-//
-//   String? etag;
-//
-//   late BookModelVolumeInfo volumeInfo;
-//
-//   BookModelAccessInfo? accessInfo;
-//
-//   BookModelSaleInfo? saleInfo;
-//
-//   BookModelItems.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     etag = json['etag'];
-//     volumeInfo = BookModelVolumeInfo.fromJson(json['volumeInfo']);
-//     saleInfo = BookModelSaleInfo.fromJson(json['saleInfo']);
-//     accessInfo = BookModelAccessInfo.fromJson(json['accessInfo']);
-//   }
-// }
 
 class BookModelVolumeInfo {
   String? title;
@@ -134,11 +115,13 @@ class BookModelVolumeInfo {
     averageRating = json['averageRating'];
     description = json['description'];
     previewLink = json['previewLink'];
+
     if (json['authors'] != null) {
       json['authors'].forEach((author) {
-        authors.add(author);
+        categories.add(author);
       });
     }
+
     if (json['categories'] != null) {
       json['categories'].forEach((category) {
         categories.add(category);
