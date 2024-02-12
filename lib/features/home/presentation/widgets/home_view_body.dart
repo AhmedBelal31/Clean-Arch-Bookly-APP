@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/services/styles.dart';
 import '../../../../core/utils/widgets/custom_error_message.dart';
 import '../../../../core/utils/widgets/custom_loading_indicator.dart';
+import 'featured_books_bloc_builder.dart';
 import 'newest_books_list_view.dart';
 import 'custom_app_bar.dart';
 import 'featured_books_list_view.dart';
@@ -27,19 +28,7 @@ class _HomeVewBodyState extends State<HomeVewBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CustomAppBar(),
-          BlocBuilder<FeaturedBooksCubit, FeaturedBooksStates>(
-            builder: (context, state) {
-              if (state is FeaturedBooksSuccessState) {
-                return FeaturedBooksListView(
-                  books: state.books,
-                );
-              } else if (state is FeaturedBooksFailureState) {
-                return CustomErrorMessage(errorMessage: state.error);
-              } else {
-                return const CustomLoadingIndicator();
-              }
-            },
-          ),
+          FeaturedBooksBlocBuilder(),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
@@ -61,3 +50,5 @@ class _HomeVewBodyState extends State<HomeVewBody> {
     );
   }
 }
+
+
