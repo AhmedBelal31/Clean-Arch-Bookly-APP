@@ -1,3 +1,4 @@
+import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 import '../../../../const.dart';
 import '../../../../core/utils/services/styles.dart';
@@ -8,8 +9,8 @@ class BookDescription extends StatelessWidget {
 
 
   const BookDescription(
-      {super.key, });
-
+      {super.key, required this.newestBook});
+final BookEntity newestBook ;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -19,7 +20,7 @@ class BookDescription extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             width: MediaQuery.of(context).size.width * .5,
-            child: Text('Jk Rowing',
+            child: Text( newestBook.title ,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Styles.textStyle20.copyWith(
@@ -30,7 +31,7 @@ class BookDescription extends StatelessWidget {
           Opacity(
               opacity: 0.9,
               child: Text(
-                'Jk Rowing',
+             newestBook.authorName   ,
                 style: Styles.textStyle14,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -40,12 +41,12 @@ class BookDescription extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  '19,99',
+                'Free , ${ newestBook.price.toString()} \$ ',
                   style:
                       Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
-              BookRating(),
+              BookRating(book: newestBook),
             ],
           ),
         ],

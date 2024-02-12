@@ -1,5 +1,5 @@
-import 'package:clean_arch_bookly_app/features/home/presentation/controller/featured_books_cubit/featured_books_cubit.dart';
-import 'package:clean_arch_bookly_app/features/home/presentation/controller/featured_books_cubit/featured_books_states.dart';
+import 'package:clean_arch_bookly_app/features/home/presentation/controller/newest_books_cubit/newest_books_cubit.dart';
+import 'package:clean_arch_bookly_app/features/home/presentation/controller/newest_books_cubit/newest_books_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/services/styles.dart';
@@ -8,7 +8,7 @@ import '../../../../core/utils/widgets/custom_loading_indicator.dart';
 import 'featured_books_bloc_builder.dart';
 import 'newest_books_list_view.dart';
 import 'custom_app_bar.dart';
-import 'featured_books_list_view.dart';
+
 
 class HomeVewBody extends StatefulWidget {
   const HomeVewBody({
@@ -28,20 +28,36 @@ class _HomeVewBodyState extends State<HomeVewBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CustomAppBar(),
-          FeaturedBooksBlocBuilder(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+          const FeaturedBooksBlocBuilder(),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 40, bottom: 0),
                   child: Text(
                     'Best Seller ',
                     style: Styles.textStyle30,
                   ),
                 ),
-                NewestBooksListView(),
+                BlocBuilder<NewestBooksCubit, NewestBooksStates>(
+                  builder: (context, state) {
+                    if(state is NewestBooksSuccessState)
+                      {
+                        return  NewestBooksListView(newestBooks: state.books);
+                      }
+                    else if (state is NewestBooksFailureState)
+                      {
+                        return CustomErrorMessage(errorMessage: state.error);
+                      }
+                    else
+                      {
+                        return const CustomLoadingIndicator();
+                      }
+
+                  },
+                ),
               ],
             ),
           ),

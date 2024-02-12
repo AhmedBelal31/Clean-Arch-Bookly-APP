@@ -1,3 +1,4 @@
+import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/utils/services/styles.dart';
 
@@ -9,9 +10,10 @@ class BookDetailsViewBody extends StatelessWidget {
 
 
   const BookDetailsViewBody({
-    Key? key,
-  }) : super(key: key);
-
+    super.key,
+    required this.book
+  });
+final BookEntity book ;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -40,14 +42,14 @@ class BookDetailsViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            BookPreview(width: width,),
+            BookPreview(width: width,book: book),
             const SizedBox(height: 60),
             const Text(
               'You Can Also Like ',
               style: Styles.textStyle18,
             ),
             const SizedBox(height: 20),
-            SimilarBooksListView(),
+            const SimilarBooksListView(),
             const SizedBox(height: 20),
           ],
         ),

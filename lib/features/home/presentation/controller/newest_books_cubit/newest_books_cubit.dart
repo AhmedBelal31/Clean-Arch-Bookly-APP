@@ -11,7 +11,6 @@ class NewestBooksCubit extends Cubit<NewestBooksStates> {
   Future<void> fetchNewestBooks() async {
     emit(NewestBooksLoadingState());
     var listOfBookEntityOrFailure = await fetchNewestBooksUseCase.execute();
-
     listOfBookEntityOrFailure.fold(
       (failure) => emit(NewestBooksFailureState(failure.errorMessage)),
       (books) => emit(NewestBooksSuccessState(books: books)),

@@ -14,8 +14,8 @@ class SearchItemsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) =>
-          NewestBooksListViewItem(index: 2,),
+      itemBuilder: (context, index) =>Container(),
+          // NewestBooksListViewItem(index: 2,newestBook: ),
       separatorBuilder: (context, index) => const SizedBox(height: 20),
       itemCount: 8,
     );

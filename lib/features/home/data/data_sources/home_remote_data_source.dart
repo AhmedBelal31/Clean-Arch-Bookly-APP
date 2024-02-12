@@ -21,7 +21,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     final data = await apiService.getData(
         endPoint: 'volumes?q=programming&filter=free-ebooks');
     List<BookEntity> books = getBooksList(data);
-    print('Featured Books IS ${books[0].imageUrl}');
     saveBooksData(kFeaturedBox, books);
     return books;
   }
@@ -32,8 +31,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         endPoint: 'volumes?q=programming&orderBy=newest&filter=free-ebooks');
 
     List<BookEntity> books = getBooksList(data);
-    print('Newest Books IS ${books.length}');
-    // saveBooksData(kNewestBox, books);
 
     return books;
   }

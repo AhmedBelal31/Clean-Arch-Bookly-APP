@@ -1,15 +1,16 @@
+import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import '../../../../core/utils/widgets/custom_cached_network_image.dart';
 import '../views/book_details_view.dart';
 import 'book_description.dart';
 
 class NewestBooksListViewItem extends StatelessWidget {
   final int index;
+  BookEntity newestBook;
 
-  const NewestBooksListViewItem(
-      {Key? key, required this.index})
-      : super(key: key);
+  NewestBooksListViewItem(
+      {super.key, required this.index, required this.newestBook});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,8 @@ class NewestBooksListViewItem extends StatelessWidget {
         //   }
         //
         // );
-        Navigator.of(context).push(
-            MaterialPageRoute(
-          builder: (context) =>
-              BookDetailsView(index: index),
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => BookDetailsView(index: index , book: newestBook),
         ));
       },
       child: SizedBox(
@@ -38,13 +37,12 @@ class NewestBooksListViewItem extends StatelessWidget {
               child: AspectRatio(
                   aspectRatio: 2.6 / 4,
                   child: CustomCachedNetworkImage(
-                    imageUrl:
-                    '',
+                    imageUrl: newestBook.imageUrl,
                     errorImageAspectRatio: 2.6 / 4,
                   )),
             ),
             const SizedBox(width: 24),
-            BookDescription()
+            BookDescription(newestBook: newestBook),
           ],
         ),
       ),

@@ -7,22 +7,20 @@ import '../../../../core/utils/widgets/custom_cached_network_image.dart';
 import '../views/book_details_view.dart';
 
 class FeaturedBooksListViewItem extends StatelessWidget {
-
   final int index;
 
   //final String imageUrl;
-final BookEntity book ;
+  final BookEntity book;
+
   const FeaturedBooksListViewItem(
-      {super.key, required this.index ,required this.book});
+      {super.key, required this.index, required this.book});
 
   @override
   Widget build(BuildContext context) {
-    print(book.imageUrl);
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              BookDetailsView( index: index),
+          builder: (context) => BookDetailsView(index: index , book: book),
         ));
         //GoRouter.of(context).push(AppRouter.kBookDetailsView);
       },
@@ -30,11 +28,10 @@ final BookEntity book ;
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
-          child:  AspectRatio(
+          child: AspectRatio(
             aspectRatio: 2.7 / 4,
             child: CustomCachedNetworkImage(
-                imageUrl: book.imageUrl ,
-                errorImageAspectRatio: 2.7 / 4),
+                imageUrl: book.imageUrl, errorImageAspectRatio: 2.7 / 4),
           ),
         ),
       ),

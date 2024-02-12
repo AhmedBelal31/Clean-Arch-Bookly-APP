@@ -7,8 +7,7 @@ import 'similar_books_list_view_item.dart';
 class SimilarBooksListView extends StatelessWidget {
 
 
-  const SimilarBooksListView({Key? key,})
-      : super(key: key);
+  const SimilarBooksListView({super.key,});
 
   @override
   Widget build(BuildContext context) {

@@ -66,11 +66,13 @@ class BookModel extends BookEntity {
   }) : super(
           bookId: id!,
           imageUrl: volumeInfo.imageLinks.thumbnail ?? '',
-          title: volumeInfo.title ?? '',
+          title: volumeInfo.title ?? 'No Title',
           authorName:
               volumeInfo.authors.isNotEmpty ? volumeInfo.authors[0] : 'No Name',
-          rating: volumeInfo.averageRating ?? 20,
-          price: saleInfo!.listPrice?.amount ?? 20,
+          rating: volumeInfo.averageRating ?? 4,
+          price: saleInfo!.listPrice?.amount ??  0,
+         previewLink:volumeInfo.previewLink ?? 'No LinK',
+         publishedDate: volumeInfo.publishedDate ?? '3/1/2001'
         );
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
@@ -118,9 +120,10 @@ class BookModelVolumeInfo {
 
     if (json['authors'] != null) {
       json['authors'].forEach((author) {
-        categories.add(author);
+        authors.add(author);
       });
     }
+
 
     if (json['categories'] != null) {
       json['categories'].forEach((category) {
@@ -195,174 +198,4 @@ class BookModelAccessInfoPdf {
   }
 }
 
-// import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
-//
-// class BookModel {
-//   int? totalItems;
-//   List<BookModelItems> items = [];
-//   String? kind;
-//
-//   BookModel({
-//     required this.totalItems,
-//     required this.items,
-//     required this.kind,
-//   });
-//
-//   BookModel.fromJson(Map<String, dynamic> json) {
-//     kind = json['kind'];
-//     totalItems = json['totalItems'];
-//     if (json['items'] != null) {
-//       json['items'].forEach((item) {
-//         items.add(BookModelItems.fromJson(item));
-//       });
-//     }
-//   }
-// }
-//
-// class BookModelItems extends BookEntity {
-//   String? id;
-//
-//   String? etag;
-//
-//   late BookModelVolumeInfo volumeInfo;
-//
-//   BookModelAccessInfo? accessInfo;
-//
-//   BookModelSaleInfo? saleInfo;
-//
-//   BookModelItems(
-//       {this.id, required this.volumeInfo, this.accessInfo, this.saleInfo, this.etag})
-//       : super(
-//           bookId: id!,
-//           imageUrl: volumeInfo.imageLinks.thumbnail!,
-//           title: volumeInfo.title!,
-//           authorName: volumeInfo.authors[0],
-//           price: saleInfo!.listPrice!.amount!,
-//           rating: volumeInfo.averageRating!,
-//         );
-//
-//   factory BookModelItems.fromJson(Map<String, dynamic> json) {
-//     return BookModelItems(
-//       id: json['id'],
-//       etag: json['etag'],
-//       volumeInfo: BookModelVolumeInfo.fromJson(json['volumeInfo']),
-//       saleInfo: BookModelSaleInfo.fromJson(json['saleInfo']),
-//       accessInfo: BookModelAccessInfo.fromJson(json['accessInfo']),
-//     );
-//   }
-//
-// // id = json['id'];
-// // etag = json['etag'];
-// // volumeInfo = BookModelVolumeInfo.fromJson(json['volumeInfo']);
-// // saleInfo = BookModelSaleInfo.fromJson(json['saleInfo']);
-// // accessInfo = BookModelAccessInfo.fromJson(json['accessInfo']);
-// }
-//
-// class BookModelVolumeInfo {
-//   String? title;
-//
-//   String? subTitle;
-//
-//   List<String> authors = [];
-//
-//   List<String> categories = [];
-//   String? publishedDate;
-//
-//   String? publisher;
-//
-//   String? description;
-//
-//   num? averageRating;
-//
-//   num? ratingsCount;
-//
-//   String? previewLink;
-//
-//   late BookModelVolumeInfoImageLinks imageLinks;
-//
-//   BookModelVolumeInfo.fromJson(Map<String, dynamic> json) {
-//     title = json['title'];
-//     subTitle = json['subtitle'];
-//     publishedDate = json['publishedDate'];
-//     publisher = json['publisher'];
-//     ratingsCount = json['ratingsCount'];
-//     averageRating = json['averageRating'];
-//     description = json['description'];
-//     previewLink = json['previewLink'];
-//     if (json['authors'] != null) {
-//       json['authors'].forEach((author) {
-//         authors.add(author);
-//       });
-//     }
-//     if (json['categories'] != null) {
-//       json['categories'].forEach((category) {
-//         categories.add(category);
-//       });
-//     }
-//     imageLinks = BookModelVolumeInfoImageLinks.fromJson(json['imageLinks']);
-//   }
-// }
-//
-// class BookModelVolumeInfoImageLinks {
-//   String? smallThumbnail;
-//   String? thumbnail;
-//
-//   BookModelVolumeInfoImageLinks.fromJson(Map<String, dynamic>? json) {
-//     if (json != null) {
-//       smallThumbnail = json['smallThumbnail'];
-//       thumbnail = json['thumbnail'];
-//     }
-//   }
-// }
-//
-// class BookModelSaleInfo {
-//   String? saleability;
-//   String? buyLink;
-//   BookModelSaleInfoListPrice? listPrice;
-//
-//   BookModelSaleInfo.fromJson(Map<String, dynamic>? json) {
-//     if (json != null) {
-//       saleability = json['saleability'];
-//       buyLink = json['buyLink'];
-//       listPrice = BookModelSaleInfoListPrice.fromJson(json['listPrice']);
-//     }
-//   }
-// }
-//
-// class BookModelSaleInfoListPrice {
-//   num? amount;
-//   String? currencyCode;
-//
-//   BookModelSaleInfoListPrice.fromJson(Map<String, dynamic>? json) {
-//     if (json != null) {
-//       amount = json['amount'];
-//       currencyCode = json['currencyCode'];
-//     }
-//   }
-// }
-//
-// class BookModelAccessInfo {
-//   BookModelAccessInfoPdf? pdf;
-//
-//   String? country;
-//
-//   BookModelAccessInfo.fromJson(Map<String, dynamic>? json) {
-//     if (json != null) {
-//       country = json['country'];
-//       pdf = BookModelAccessInfoPdf.fromJson(json['pdf']);
-//     }
-//   }
-// }
-//
-// class BookModelAccessInfoPdf {
-//   bool? isAvailable;
-//
-//   String? acsTokenLink;
-//
-//   BookModelAccessInfoPdf.fromJson(Map<String, dynamic>? json) {
-//     if (json != null) {
-//       isAvailable = json['isAvailable'];
-//       acsTokenLink = json['acsTokenLink'];
-//     }
-//   }
-// }
+

@@ -1,3 +1,4 @@
+import 'package:clean_arch_bookly_app/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 import '../../../../const.dart';
 import '../../../../core/utils/functions/lanuchCustomUrl.dart';
@@ -11,10 +12,11 @@ class BookPreview extends StatelessWidget {
   const BookPreview({
     super.key,
     required this.width,
+    required this.book
   });
 
   final double width;
-
+final BookEntity book ;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class BookPreview extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        BookRating(),
+        BookRating(book:book ),
 
           const SizedBox(height: 40),
         Row(
