@@ -17,7 +17,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late final ScrollController _scrollController;
 
   int nextPage = 1;
-  bool isMax = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -28,22 +28,18 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     super.initState();
   }
 
-  void listenToListState() {
+  void listenToListState() async {
     var currentPosition = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
 
-    // if (!isMax) {
-    //   isMax = true;
-    //   if (currentPosition >= maxScrollLength * 0.7) {
-    //     BlocProvider.of<FeaturedBooksCubit>(context)
-    //         .fetchFeaturedBooks(pageNumber: nextPage);
-    //     nextPage++;
-    //   }
-    //   isMax = false;
-    // }
-    if (currentPosition >= maxScrollLength * 0.6) {
-      BlocProvider.of<FeaturedBooksCubit>(context)
-          .fetchFeaturedBooks(pageNumber: nextPage++);
+    if (currentPosition >= maxScrollLength * 0.7) {
+      if (!isLoading) {
+        isLoading = true;
+        await BlocProvider.of<FeaturedBooksCubit>(context)
+            .fetchFeaturedBooks(pageNumber: nextPage);
+        nextPage++;
+        isLoading = false;
+      }
     }
   }
 
