@@ -37,7 +37,7 @@ class NewestBooksListViewItem extends StatelessWidget {
               child: AspectRatio(
                   aspectRatio: 2.6 / 4,
                   child: CustomCachedNetworkImage(
-                    imageUrl: newestBook.imageUrl,
+                    imageUrl: newestBook.imageUrl ?? '',
                     errorImageAspectRatio: 2.6 / 4,
                   )),
             ),

@@ -7,10 +7,8 @@ class NewestBooksListView extends StatelessWidget {
 
   List<BookEntity> newestBooks;
 
-
   @override
   Widget build(BuildContext context) {
-    print('Newest Test ${newestBooks[0].imageUrl}');
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
@@ -19,7 +17,7 @@ class NewestBooksListView extends StatelessWidget {
         newestBook: newestBooks[index],
       ),
       separatorBuilder: (context, index) => const SizedBox(height: 20),
-      itemCount:newestBooks.length,
+      itemCount: newestBooks.length,
     );
   }
 }

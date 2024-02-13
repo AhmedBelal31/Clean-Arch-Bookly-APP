@@ -20,7 +20,7 @@ class FeaturedBooksListViewItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => BookDetailsView(index: index , book: book),
+          builder: (context) => BookDetailsView(index: index, book: book),
         ));
         //GoRouter.of(context).push(AppRouter.kBookDetailsView);
       },
@@ -28,10 +28,18 @@ class FeaturedBooksListViewItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
+
+          // child: AspectRatio(
+          //   aspectRatio: 2.7 / 4,
+          //   child: Image.asset(
+          //     'assets/images/No-Image-Placeholder.png',
+          //     fit: BoxFit.fill,
+          //   ),
+          // ),
           child: AspectRatio(
             aspectRatio: 2.7 / 4,
             child: CustomCachedNetworkImage(
-                imageUrl: book.imageUrl, errorImageAspectRatio: 2.7 / 4),
+                imageUrl: book.imageUrl ?? '', errorImageAspectRatio: 2.7 / 4),
           ),
         ),
       ),

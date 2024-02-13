@@ -34,7 +34,7 @@ final BookEntity book ;
                   borderRadius: BorderRadius.circular(15.0),
                   child: CustomCachedNetworkImage(
                       imageUrl:
-                         book.imageUrl,
+                         book.imageUrl ?? '',
                       errorImageAspectRatio: 2.5 / 4),
                 )),
           ),

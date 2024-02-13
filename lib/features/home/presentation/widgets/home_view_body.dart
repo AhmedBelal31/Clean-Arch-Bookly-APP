@@ -9,7 +9,6 @@ import 'featured_books_bloc_builder.dart';
 import 'newest_books_list_view.dart';
 import 'custom_app_bar.dart';
 
-
 class HomeVewBody extends StatefulWidget {
   const HomeVewBody({
     super.key,
@@ -29,7 +28,7 @@ class _HomeVewBodyState extends State<HomeVewBody> {
         children: [
           const CustomAppBar(),
           const FeaturedBooksBlocBuilder(),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,25 +36,19 @@ class _HomeVewBodyState extends State<HomeVewBody> {
                 const Padding(
                   padding: EdgeInsets.only(top: 40, bottom: 0),
                   child: Text(
-                    'Best Seller ',
+                    'Newest Books ',
                     style: Styles.textStyle30,
                   ),
                 ),
                 BlocBuilder<NewestBooksCubit, NewestBooksStates>(
                   builder: (context, state) {
-                    if(state is NewestBooksSuccessState)
-                      {
-                        return  NewestBooksListView(newestBooks: state.books);
-                      }
-                    else if (state is NewestBooksFailureState)
-                      {
-                        return CustomErrorMessage(errorMessage: state.error);
-                      }
-                    else
-                      {
-                        return const CustomLoadingIndicator();
-                      }
-
+                    if (state is NewestBooksSuccessState) {
+                      return NewestBooksListView(newestBooks: state.books);
+                    } else if (state is NewestBooksFailureState) {
+                      return CustomErrorMessage(errorMessage: state.error);
+                    } else {
+                      return const CustomLoadingIndicator();
+                    }
                   },
                 ),
               ],
@@ -66,5 +59,3 @@ class _HomeVewBodyState extends State<HomeVewBody> {
     );
   }
 }
-
-

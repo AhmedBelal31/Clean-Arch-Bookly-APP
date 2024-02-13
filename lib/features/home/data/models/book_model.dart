@@ -64,8 +64,8 @@ class BookModel extends BookEntity {
     required this.volumeInfo,
     required this.saleInfo,
   }) : super(
-            bookId: id!,
-            imageUrl: volumeInfo.imageLinks.thumbnail ?? '',
+            bookId: id ?? 'No-Id',
+            imageUrl: volumeInfo.imageLinks.thumbnail ,
             title: volumeInfo.title ?? 'No Title',
             authorName: volumeInfo.authors.isNotEmpty
                 ? volumeInfo.authors[0]

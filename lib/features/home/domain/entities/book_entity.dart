@@ -7,7 +7,7 @@ class BookEntity {
   @HiveField(0)
   String bookId;
   @HiveField(1)
-  String imageUrl;
+  String? imageUrl;
   @HiveField(2)
   String title;
   @HiveField(3)

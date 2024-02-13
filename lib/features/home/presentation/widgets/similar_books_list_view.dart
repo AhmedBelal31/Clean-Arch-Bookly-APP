@@ -6,10 +6,10 @@ import '../../../../core/utils/widgets/custom_loading_indicator.dart';
 import 'similar_books_list_view_item.dart';
 
 class SimilarBooksListView extends StatelessWidget {
+  const SimilarBooksListView({super.key, required this.books});
 
+  final List<BookEntity> books;
 
-  const SimilarBooksListView({super.key,required this.books});
-final List<BookEntity> books ;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,7 +19,8 @@ final List<BookEntity> books ;
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) =>  SimilarBooksListViewItem(imageUrl: books[index].imageUrl),
+        itemBuilder: (context, index) =>
+            SimilarBooksListViewItem(imageUrl: books[index].imageUrl ?? ''),
         separatorBuilder: (context, index) => const SizedBox(width: 10),
         itemCount: 6,
       ),
