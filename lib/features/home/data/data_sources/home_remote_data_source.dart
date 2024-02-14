@@ -33,7 +33,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         endPoint: 'volumes?q=programming&orderBy=newest&${pageNumber*10}');
 
     List<BookEntity> books = getBooksList(data);
-
+    saveBooksData(kNewestBox, books);
     return books;
   }
 

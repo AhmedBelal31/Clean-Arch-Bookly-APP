@@ -31,17 +31,13 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
   void listenToListState() async {
     var currentPosition = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
-    var listHeight = _scrollController.position.viewportDimension;
-
-    // Calculate 60% of the list's height
-    var sixtyPercentHeight = listHeight * 0.7;
-    if (sixtyPercentHeight >= maxScrollLength) {
-      print('Hello');
+    if (currentPosition >= maxScrollLength * 0.7) {
+      print('hello');
       if (!isLoading) {
         isLoading = true;
         await BlocProvider.of<NewestBooksCubit>(context)
-            .fetchNewestBooks(pageNumber: nextPage);
-        nextPage++;
+            .fetchNewestBooks(pageNumber: nextPage++);
+
         isLoading = false;
       }
     }
@@ -55,16 +51,30 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      controller: _scrollController,
-      physics: const BouncingScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) => NewestBooksListViewItem(
-        index: index,
-        newestBook: widget.newestBooks[index],
+    return Expanded(
+      child: ListView.separated(
+        controller: _scrollController,
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) => NewestBooksListViewItem(
+          index: index,
+          newestBook: widget.newestBooks[index],
+        ),
+        separatorBuilder: (context, index) => const SizedBox(height: 20),
+        itemCount: widget.newestBooks.length,
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: 20),
-      itemCount: widget.newestBooks.length,
     );
+
+    // return ListView.separated(
+    //   controller: _scrollController,
+    //   physics: const BouncingScrollPhysics(),
+    //   shrinkWrap: true,
+    //   itemBuilder: (context, index) => NewestBooksListViewItem(
+    //     index: index,
+    //     newestBook: widget.newestBooks[index],
+    //   ),
+    //   separatorBuilder: (context, index) => const SizedBox(height: 20),
+    //   itemCount: widget.newestBooks.length,
+    // );
   }
 }
