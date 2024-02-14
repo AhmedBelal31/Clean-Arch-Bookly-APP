@@ -9,14 +9,10 @@ import 'book_rating.dart';
 import 'custom_button.dart';
 
 class BookPreview extends StatelessWidget {
-  const BookPreview({
-    super.key,
-    required this.width,
-    required this.book
-  });
+  const BookPreview({super.key, required this.width, required this.book});
 
   final double width;
-final BookEntity book ;
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +29,14 @@ final BookEntity book ;
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: CustomCachedNetworkImage(
-                      imageUrl:
-                         book.imageUrl ?? '',
+                      imageUrl: book.imageUrl ?? '',
                       errorImageAspectRatio: 2.5 / 4),
                 )),
           ),
         ),
         const SizedBox(height: 30),
         Text(
-           '${book.title} ',
+          '${book.title} ',
           style: Styles.textStyle30.copyWith(fontFamily: kGtSectraFine),
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
@@ -56,9 +51,8 @@ final BookEntity book ;
           ),
         ),
         const SizedBox(height: 20),
-        BookRating(book:book ),
-
-          const SizedBox(height: 40),
+        BookRating(book: book),
+        const SizedBox(height: 40),
         Row(
           children: [
             //SizedBox(width: 10),
@@ -66,8 +60,7 @@ final BookEntity book ;
               onPressed: () {},
               backgroundColor: Colors.white,
               textColor: Colors.black,
-              text:
-              ' ${ book.price.toString()} \$ ',
+              text: ' ${book.price.toString()} \$ ',
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16.0),
                 bottomLeft: Radius.circular(16.0),
@@ -75,7 +68,10 @@ final BookEntity book ;
             ),
             CustomButton(
               onPressed: () {
-                return null ;
+                return launchCustomUrl(
+                  context,
+                  book.previewLink,
+                );
               },
               backgroundColor: Colors.red,
               textColor: Colors.white,
