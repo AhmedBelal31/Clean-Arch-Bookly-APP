@@ -5,3 +5,4 @@ const kTranstionDuration = Duration(seconds: 1);
 const kGtSectraFine = 'GT Sectra Fine';
 const kFeaturedBox = 'FeaturedBox1' ;
 const kNewestBox = 'NewestBox1' ;
+const kSearchBox = 'NewestBox1' ;
