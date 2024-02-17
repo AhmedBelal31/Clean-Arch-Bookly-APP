@@ -43,7 +43,7 @@ class NewestBooksListViewItem extends StatelessWidget {
                   )),
             ),
             const SizedBox(width: 24),
-            BookDescription(newestBook: newestBook),
+            BookDescription(book: newestBook),
           ],
         ),
       ),

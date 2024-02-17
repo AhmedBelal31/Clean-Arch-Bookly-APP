@@ -32,7 +32,6 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
     var currentPosition = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
     if (currentPosition >= maxScrollLength * 0.7) {
-      print('hello');
       if (!isLoading) {
         isLoading = true;
         await BlocProvider.of<NewestBooksCubit>(context)
@@ -51,18 +50,16 @@ class _NewestBooksListViewState extends State<NewestBooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        controller: _scrollController,
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemBuilder: (context, index) => NewestBooksListViewItem(
-          index: index,
-          newestBook: widget.newestBooks[index],
-        ),
-        separatorBuilder: (context, index) => const SizedBox(height: 20),
-        itemCount: widget.newestBooks.length,
+    return ListView.separated(
+      controller: _scrollController,
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) => NewestBooksListViewItem(
+        index: index,
+        newestBook: widget.newestBooks[index],
       ),
+      separatorBuilder: (context, index) => const SizedBox(height: 20),
+      itemCount: widget.newestBooks.length,
     );
 
     // return ListView.separated(

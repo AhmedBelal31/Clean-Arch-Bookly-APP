@@ -1,3 +1,4 @@
+import 'package:clean_arch_bookly_app/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,9 +44,11 @@ class _NewestBooksBlocConsumerState extends State<NewestBooksBlocConsumer> {
             state is NewestBooksPaginationLoadingState ||
             state is NewestBooksFailureState) {
           return NewestBooksListView(newestBooks: allBooks);
-        } else if (state is NewestBooksFailureState) {
+        }
+        else if (state is NewestBooksFailureState) {
           return CustomErrorMessage(errorMessage: state.error);
-        } else {
+        }
+        else {
           return const CustomLoadingIndicator();
         }
       },

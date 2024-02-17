@@ -5,6 +5,7 @@ abstract class FeaturedBooksStates {}
 class FeaturedBooksInitialState extends FeaturedBooksStates {}
 
 class FeaturedBooksLoadingState extends FeaturedBooksStates {}
+
 class FeaturedBooksPaginationLoadingState extends FeaturedBooksStates {}
 
 class FeaturedBooksSuccessState extends FeaturedBooksStates {
@@ -12,6 +13,7 @@ class FeaturedBooksSuccessState extends FeaturedBooksStates {
 
   FeaturedBooksSuccessState({required this.books});
 }
+
 class FeaturedBooksPaginationFailureState extends FeaturedBooksStates {
   String error;
 
