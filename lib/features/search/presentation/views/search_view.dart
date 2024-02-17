@@ -6,7 +6,7 @@ import '../../../../core/utils/services/service_locator.dart';
 import 'widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({Key? key}) : super(key: key);
+  const SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +14,7 @@ class SearchView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         elevation: 0.0,
+        scrolledUnderElevation: 0,
       ),
       body: const SearchViewBody(),
     );
