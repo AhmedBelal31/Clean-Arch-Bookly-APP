@@ -6,9 +6,9 @@ import '../../../../core/utils/services/styles.dart';
 import 'book_rating.dart';
 
 class BookDescription extends StatelessWidget {
-  const BookDescription({super.key, required this.newestBook});
+  const BookDescription({super.key, required this.book});
 
-  final BookEntity newestBook;
+  final BookEntity book;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class BookDescription extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             width: MediaQuery.of(context).size.width * .5,
-            child: Text(newestBook.title,
+            child: Text(book.title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Styles.textStyle20.copyWith(
@@ -30,7 +30,7 @@ class BookDescription extends StatelessWidget {
           Opacity(
               opacity: 0.9,
               child: Text(
-                newestBook.authorName,
+                book.authorName,
                 style: Styles.textStyle14,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -40,14 +40,14 @@ class BookDescription extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  newestBook.price == 0
-                      ? 'Free , ${newestBook.price.toString()}\$ '
-                      : ' ${newestBook.price.toString()} \$ ',
+                  book.price == 0
+                      ? 'Free , ${book.price.toString()}\$ '
+                      : ' ${book.price.toString()} \$ ',
                   style:
                       Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
-              BookRating(book: newestBook),
+              BookRating(book: book),
             ],
           ),
         ],

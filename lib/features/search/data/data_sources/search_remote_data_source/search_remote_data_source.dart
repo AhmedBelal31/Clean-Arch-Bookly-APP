@@ -17,7 +17,7 @@ class SearchRemoteDataSourceImpl extends SearchRemoteDataSource {
 
   @override
   Future<List<BookEntity>> fetchSearchedBooks(
-      {required String bookName, int pageNumber = 0}) async {
+      {String? bookName, int pageNumber = 0}) async {
     final searchedBooks = await apiService.getData(
         endPoint: 'volumes?q=$bookName&startIndex=${pageNumber * 10}');
     List<BookEntity> books = getBooksList(searchedBooks);

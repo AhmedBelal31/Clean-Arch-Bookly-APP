@@ -14,23 +14,21 @@ final BookEntity book  ;
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
           const Icon(
             FontAwesomeIcons.solidStar,
             color: Color(0xffFFDD4F),
             size: 16,
           ),
         const SizedBox(width: 10),
-
           Text(
             '${book.rating}',
-            style: Styles.textStyle18,
+            style: Styles.textStyle14,
           ),
         const SizedBox(width: 8),
         Text(
-         book.publishedDate,
+         book.publishedDate.length >10 ?'No-Data' :   book.publishedDate  ,
           style: Styles.textStyle14.copyWith(color: const Color(0xff707070)),
         ),
       ],

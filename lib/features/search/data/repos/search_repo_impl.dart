@@ -17,18 +17,22 @@ class SearchRepoImpl extends SearchRepo {
 
   @override
   Future<Either<Failure, List<BookEntity>>> fetchSearchedBooks(
-      {required String bookName, int pageNumber = 0}) async {
+      { required String bookName, int pageNumber = 0}) async {
     try {
       List<BookEntity> cachedBooks = searchLocalDataSource.fetchSearchedBooks(
           bookName: bookName, pageNumber: pageNumber);
 
-      if (cachedBooks.isNotEmpty) {
-        return right(cachedBooks);
-      } else {
-        List<BookEntity> searchedBooks = await searchRemoteDataSource
-            .fetchSearchedBooks(bookName: bookName, pageNumber: pageNumber);
-        return right(searchedBooks);
-      }
+      // if (cachedBooks.isNotEmpty) {
+      //   return right(cachedBooks);
+      // } else {
+      //   List<BookEntity> searchedBooks = await searchRemoteDataSource
+      //       .fetchSearchedBooks(bookName: bookName, pageNumber: pageNumber);
+      //   return right(searchedBooks);
+      // }
+
+      List<BookEntity> searchedBooks = await searchRemoteDataSource
+          .fetchSearchedBooks(bookName: bookName, pageNumber: pageNumber);
+      return right(searchedBooks);
     } catch (error) {
       if (error is DioException) {
         return left(ServerFailure.fromDioException(error));

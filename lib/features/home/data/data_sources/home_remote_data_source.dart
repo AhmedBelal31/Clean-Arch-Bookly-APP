@@ -1,6 +1,7 @@
 import 'package:clean_arch_bookly_app/const.dart';
 import 'package:clean_arch_bookly_app/core/utils/services/api_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../../../../core/utils/functions/get_books_list.dart';
 import '../../../../core/utils/functions/save_books_data.dart';
 import '../../domain/entities/book_entity.dart';
 import '../models/book_model.dart';
@@ -37,11 +38,5 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     return books;
   }
 
-  List<BookEntity> getBooksList(Map<String, dynamic> data) {
-    List<BookEntity> books = [];
-    for (var bookMap in data['items']) {
-      books.add(BookModel.fromJson(bookMap));
-    }
-    return books;
-  }
+
 }

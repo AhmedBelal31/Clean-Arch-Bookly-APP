@@ -20,7 +20,8 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks(
       {int pageNumber = 0}) async {
     try {
-      List<BookEntity> cachedBooks = homeLocalDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+      List<BookEntity> cachedBooks =
+          homeLocalDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
       if (cachedBooks.isNotEmpty) {
         return right(cachedBooks);
       }
@@ -40,7 +41,8 @@ class HomeRepoImpl extends HomeRepo {
       {int pageNumber = 0}) async {
     try {
       // List<BookEntity> cachedBooks;
-      List<BookEntity> cachedBooks = homeLocalDataSource.fetchNewestBooks(pageNumber: pageNumber);
+      List<BookEntity> cachedBooks =
+          homeLocalDataSource.fetchNewestBooks(pageNumber: pageNumber);
       if (cachedBooks.isNotEmpty) {
         return right(cachedBooks);
       }
