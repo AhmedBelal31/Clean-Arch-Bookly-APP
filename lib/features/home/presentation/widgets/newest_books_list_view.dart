@@ -16,7 +16,7 @@ class NewestBooksListView extends StatefulWidget {
 class _NewestBooksListViewState extends State<NewestBooksListView> {
   late final ScrollController _scrollController;
 
-  int nextPage = 1;
+  int nextPage = 0;
   bool isLoading = false;
 
   @override

@@ -10,12 +10,12 @@ class SearchCubit extends Cubit<SearchStates> {
 
   Future<void> fetchSearchedBooks(
       {required String bookName, int pageNumber = 0}) async {
-    if (pageNumber == 0) {
-      emit(SearchedBooksLoadingState());
-    } else {
-      emit(SearchedBooksPaginationLoadingState());
-    }
-
+    // if (pageNumber == 0) {
+    //   emit(SearchedBooksLoadingState());
+    // } else {
+    //   emit(SearchedBooksPaginationLoadingState());
+    // }
+    emit(SearchedBooksLoadingState());
     var listOfBooksEntitiesOrFailure =
         await searchUseCase.execute(param: pageNumber, param2: bookName);
     listOfBooksEntitiesOrFailure.fold((failure) {

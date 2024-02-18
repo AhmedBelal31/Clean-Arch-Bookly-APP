@@ -13,13 +13,10 @@ class SearchBooksListView extends StatefulWidget {
     super.key,
     required this.searchedBooks,
     required this.searchQuery,
-
   });
 
   final List<BookEntity> searchedBooks;
   final String searchQuery;
-
-
 
   @override
   State<SearchBooksListView> createState() => _SearchBooksListViewState();
@@ -46,11 +43,12 @@ class _SearchBooksListViewState extends State<SearchBooksListView> {
       if (!isLoading) {
         isLoading = true;
         await BlocProvider.of<SearchCubit>(context).fetchSearchedBooks(
-            bookName: widget.searchQuery, pageNumber: pageNumber++);
-
+            bookName:widget.searchQuery, pageNumber: pageNumber);
+        pageNumber++;
         isLoading = false;
-        debugPrint('page index is $pageNumber');
+
       }
+      debugPrint('page index is $pageNumber');
     }
   }
 

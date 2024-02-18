@@ -22,9 +22,8 @@ class SearchViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var searchController = TextEditingController();
-    List<BookEntity> allSearchedBooks = [];
+    // List<BookEntity> allSearchedBooks = [];
     List<BookEntity> searchedBooks = [];
-
     String searchQuery = '';
     return SafeArea(
       child: Padding(
@@ -59,7 +58,7 @@ class SearchViewBody extends StatelessWidget {
             BlocConsumer<SearchCubit, SearchStates>(
               listener: (context, state) {
                 if (state is SearchedBooksSuccessState) {
-                  allSearchedBooks.addAll(state.searchedBooks);
+                  // allSearchedBooks.addAll(state.searchedBooks);
                   searchedBooks = state.searchedBooks;
                 }
                 if (state is SearchedBooksPaginationFailureState) {
@@ -76,7 +75,7 @@ class SearchViewBody extends StatelessWidget {
                 if (state is SearchedBooksSuccessState ||
                     state is SearchedBooksPaginationFailureState) {
                   return SearchBooksListView(
-                    searchedBooks: searchedBooks,
+                    searchedBooks: state is SearchedBooksSuccessState ? state.searchedBooks : [],
                     searchQuery: searchQuery,
                   );
                 } else if (state is SearchedBooksFailureState) {
